@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prometheus - Synthetic Biology Component Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header>
+        <h1>Prometheus</h1>
+        <p>AI-powered model for quick generation of synthetic biology components</p>
+    </header>
+    <main>
+        <form id="form">
+            <h2>Enter Your Requirements</h2>
+            <div id="component-fields">
+                <div class="form-group" id="label_0">
+                    <label for="type_0">Component Type | 元件类型</label>
+                    <select id="type_0" class="with-icons">
+                        <option value="Promoters" data-icon="./icons/promoter.png">Promoter | 启动子</option>
+                        <option value="Ribosome_Binding_Site" data-icon="./icons/ribosome.png">Ribosome Binding Site | 核糖体结合位点</option>
+                        <option value="Protein_domains" data-icon="./icons/protein.png">Protein Domains | 蛋白质结构域</option>
+                        <option value="Protein_coding_sequences" data-icon="./icons/coding.png">Protein Coding Sequences | 蛋白质编码序列</option>
+                        <option value="Translational_units" data-icon="./icons/translational.png">Translational Units</option>
+                        <option value="Terminators" data-icon="./icons/terminator.png">Terminator | 终止子</option>
+                        <option value="DNA" data-icon="./icons/dna.png">DNA</option>
+                        <option value="Plasmid_backbones" data-icon="icons/backbone.png">Plasmid Backbones | 质粒基本结构</option>
+                        <option value="Plasmids" data-icon="./icons/plasmid.png">Plasmids | 质粒</option>
+                        <option value="Primers" data-icon="./icons/primer.png">Primers | 引物</option>
+                        <option value="Composite_Parts" data-icon="./icons/composite.png">Composite Parts | 综合</option>
+                    </select>
+                    <label for="description_0">Component Description | 元件描述</label>
+                    <input type="text" id="description_0" placeholder="Enter a description | 输入描述">
+                </div>
+            </div>
+            <input id="add_comp" type="button" value="Add Component | 添加元件"/>
+            <input id="remove_comp" type="button" value="Remove Component | 删除元件"/>
+            <button type="submit">Submit | 提交</button>
+        </form>
+        <div id="result"></div>
+        <script src="./showdown.min.js"></script>
+        <script src="./script.js" defer></script>
+    </main>
+    <footer>
+        <p>&copy; 2024 iGEM Team - Prometheus. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selects = document.querySelectorAll('select.with-icons');
+            selects.forEach(select => {
+                select.addEventListener('change', function() {
+                    const icon = this.options[this.selectedIndex].dataset.icon;
+                    this.style.backgroundImage = `url(${icon})`;
+                });
+                const icon = select.options[select.selectedIndex].dataset.icon;
+                select.style.backgroundImage = `url(${icon})`;
+            });
+        });
+    </script>
+</body>
+</html>
